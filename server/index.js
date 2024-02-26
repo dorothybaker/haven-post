@@ -12,7 +12,11 @@ config();
 const app = express();
 
 app.use(
-  cors({ origin: "https://haven-post-client.vercel.app", credentials: true })
+  cors({
+    origin: "https://haven-post-client.vercel.app",
+    credentials: true,
+    methods: ["GET", "POST", "DELETE", "PUT"],
+  })
 );
 app.use(express.json());
 app.use(cookieParser());
