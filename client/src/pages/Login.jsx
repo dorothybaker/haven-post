@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 import { AuthContext } from "../../context/authContext";
 
 const Login = () => {
-  const BASE_URL = "http://localhost:8000/api";
+  const BASE_URL = "https://haven-post.vercel.app/api";
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");

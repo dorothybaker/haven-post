@@ -4,7 +4,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 
 const Register = () => {
-  const BASE_URL = "http://localhost:8000/api";
+  const BASE_URL = "https://haven-post.vercel.app/api";
 
   const [email, setEmail] = useState("");
   const [username, setUsername] = useState("");

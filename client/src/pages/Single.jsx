@@ -10,7 +10,7 @@ import DOMPurify from "dompurify";
 import { AuthContext } from "../../context/authContext";
 
 const Single = () => {
-  const BASE_URL = "http://localhost:8000/api";
+  const BASE_URL = "https://haven-post.vercel.app/api";
   const [post, setPost] = useState([]);
 
   const location = useLocation();

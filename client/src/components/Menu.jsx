@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 const Menu = ({ category }) => {
-  const BASE_URL = "http://localhost:8000/api";
+  const BASE_URL = "https://haven-post.vercel.app/api";
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {

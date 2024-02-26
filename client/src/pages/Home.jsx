@@ -5,7 +5,7 @@ import axios from "axios";
 import DOMPurify from "dompurify";
 
 const Home = () => {
-  const BASE_URL = "http://localhost:8000/api";
+  const BASE_URL = "https://haven-post.vercel.app/api";
   const [posts, setPosts] = useState([]);
 
   const category = useLocation().search;

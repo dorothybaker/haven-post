@@ -8,7 +8,7 @@ import axios from "axios";
 import moment from "moment";
 
 const Write = () => {
-  const BASE_URL = "http://localhost:8000/api";
+  const BASE_URL = "https://haven-post.vercel.app/api";
 
   const categories = [
     { name: "Art", value: "art" },
