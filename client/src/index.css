@@ -17,6 +17,7 @@
 
 .single {
   all: inherit !important;
+  background: white !important;
 }
 
 .single > * {
