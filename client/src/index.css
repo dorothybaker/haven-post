@@ -34,3 +34,13 @@
   font-weight: bold;
   color: blue;
 }
+
+.single h1 {
+  font-size: 1.5em !important;
+}
+.single h2 {
+  font-size: 1.17em !important;
+}
+.single h3 {
+  font-size: 1.05em !important;
+}
