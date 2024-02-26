@@ -91,9 +91,7 @@ const Single = () => {
             </div>
           )}
         </div>
-        <h1 className="lg:text-4xl md:text-3xl text-2xl font-bold">
-          {post.title}
-        </h1>
+        <h1 className="lg:text-4xl text-3xl font-bold">{post.title}</h1>
         <div
           dangerouslySetInnerHTML={{
             __html: DOMPurify.sanitize(post?.description),
