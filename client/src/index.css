@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  font-family: "Playfair Display";
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+}
+
+.ql-container {
+  height: 320px;
+  border-bottom: 1px solid gray;
+}
+
+.single {
+  all: inherit !important;
+}
+
+.single > * {
+  all: revert !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.single ul,
+.single ol {
+  margin-left: 20px !important;
+}
+
+.single a {
+  font-weight: bold;
+  color: blue;
+}
