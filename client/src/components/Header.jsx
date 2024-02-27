@@ -6,17 +6,17 @@ import { AuthContext } from "../../context/authContext";
 
 const Header = () => {
   const links = [
-    { name: "ART", href: "/?category=art" },
-    { name: "SCIENCE", href: "/?category=science" },
+    { name: "CULTURE", href: "/?category=culture" },
+    { name: "NATURE", href: "/?category=nature" },
     { name: "TECHNOLOGY", href: "/?category=technology" },
-    { name: "CINEMA", href: "/?category=cinema" },
-    { name: "FASHION", href: "/?category=fashion" },
+    { name: "LIFESTYLE", href: "/?category=lifestyle" },
+    { name: "HEALTH", href: "/?category=health" },
     { name: "FOOD", href: "/?category=food" },
   ];
 
   const navigate = useNavigate();
 
-  const { currentUser, login, logout } = useContext(AuthContext);
+  const { currentUser, logout } = useContext(AuthContext);
 
   return (
     <div className="px-4 sm:py-5 py-3 justify-between flex items-center gap-3">

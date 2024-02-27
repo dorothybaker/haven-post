@@ -5,8 +5,8 @@ export const getPosts = (req, res) => {
   const { category } = req.query;
 
   const query = category
-    ? "SELECT * FROM posts WHERE category = ?"
-    : "SELECT * FROM posts";
+    ? "SELECT * FROM posts WHERE category = ? ORDER BY date DESC"
+    : "SELECT * FROM posts ORDER BY date DESC";
 
   db.query(query, [category], (err, data) => {
     if (err) return res.status(500).send(err);

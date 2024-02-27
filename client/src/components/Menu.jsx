@@ -1,25 +1,35 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { MenuSkeleton } from "../skeletons/menuSkeleton";
 
 const Menu = ({ category }) => {
   const BASE_URL = "https://haven-post.vercel.app/api";
   const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
       try {
-        const res = await axios.get(`${BASE_URL}/posts/${category}`);
+        const res = await axios.get(`${BASE_URL}/posts/?category=${category}`);
         if (res) {
           setPosts(res.data);
+          setLoading(false);
         }
       } catch (error) {
         console.log(error);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchData();
   }, [category]);
+
+  if (loading) {
+    return <MenuSkeleton />;
+  }
 
   return (
     <div className="flex flex-col gap-3">
@@ -31,7 +41,7 @@ const Menu = ({ category }) => {
       </div>
       <div className="flex flex-col gap-2">
         {posts &&
-          posts?.map((post) => (
+          posts.slice(0, 3)?.map((post) => (
             <div key={post.id} className="flex flex-col gap-1">
               <img
                 src={`../uploads/${post.img}`}

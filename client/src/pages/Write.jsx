@@ -11,11 +11,11 @@ const Write = () => {
   const BASE_URL = "https://haven-post.vercel.app/api";
 
   const categories = [
-    { name: "Art", value: "art" },
-    { name: "Science", value: "science" },
+    { name: "Culture", value: "culture" },
+    { name: "Nature", value: "nature" },
     { name: "Technology", value: "technology" },
-    { name: "Cinema", value: "cinema" },
-    { name: "Fashion", value: "fashion" },
+    { name: "Lifestyle", value: "lifestyle" },
+    { name: "Health", value: "health" },
     { name: "Food", value: "food" },
   ];
 
@@ -27,6 +27,8 @@ const Write = () => {
   const [title, setTitle] = useState(state?.title || "");
   const [img, setImg] = useState(null);
   const [category, setCategory] = useState(state?.category || "");
+
+  const [loading, setLoading] = useState(false);
 
   const upload = async () => {
     try {
@@ -44,6 +46,8 @@ const Write = () => {
 
   const handleClick = async (e) => {
     e.preventDefault();
+    setLoading(true);
+
     const imgUrl = await upload();
 
     try {
@@ -70,9 +74,12 @@ const Write = () => {
             { withCredentials: true }
           );
 
+      setLoading(false);
       navigate("/");
     } catch (error) {
       console.log(error);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -146,7 +153,13 @@ const Write = () => {
               Save as a draft
             </button>
             <button className="btn btn-success btn-sm" onClick={handleClick}>
-              Publish
+              {loading ? (
+                <span className="loading loading-dots"></span>
+              ) : state ? (
+                "Update"
+              ) : (
+                "Publish"
+              )}
             </button>
           </div>
         </div>

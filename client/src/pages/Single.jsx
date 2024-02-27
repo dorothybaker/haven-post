@@ -8,10 +8,12 @@ import moment from "moment";
 import DOMPurify from "dompurify";
 
 import { AuthContext } from "../../context/authContext";
+import { SingleSkeleton } from "../skeletons/singleSkeleton";
 
 const Single = () => {
   const BASE_URL = "https://haven-post.vercel.app/api";
   const [post, setPost] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const location = useLocation();
   const postId = location.pathname.split("/")[2];
@@ -33,18 +35,26 @@ const Single = () => {
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
       try {
         const res = await axios.get(`${BASE_URL}/posts/${postId}`);
         if (res) {
           setPost(res.data);
+          setLoading(false);
         }
       } catch (error) {
         console.log(error);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchData();
   }, [postId]);
+
+  if (loading) {
+    return <SingleSkeleton />;
+  }
 
   return (
     <div className="flex gap-5 p-4">

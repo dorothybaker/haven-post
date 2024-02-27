@@ -2,28 +2,39 @@ import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
 
+import { HomeSkeleton } from "../skeletons/homeSkeleton";
+
 import DOMPurify from "dompurify";
 
 const Home = () => {
   const BASE_URL = "https://haven-post.vercel.app/api";
   const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(false);
 
   const category = useLocation().search;
 
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true);
       try {
         const res = await axios.get(`${BASE_URL}/posts/${category}`);
         if (res) {
           setPosts(res.data);
+          setLoading(false);
         }
       } catch (error) {
         console.log(error);
+      } finally {
+        setLoading(false);
       }
     };
 
     fetchData();
   }, [category]);
+
+  if (loading) {
+    return <HomeSkeleton />;
+  }
 
   return (
     <div className="p-4">
@@ -39,11 +50,11 @@ const Home = () => {
             </div>
             <div className="md:flex-2 sm:flex-1 flex flex-col justify-between gap-2 w-full">
               <Link to={`/post/${post.id}`}>
-                <h1 className="lg:text-5xl font-bold md:text-4xl sm:text-3xl text-2xl">
+                <h1 className="lg:text-5xl font-bold md:text-4xl sm:text-3xl text-2xl line-clamp-2">
                   {post.title}
                 </h1>
               </Link>
-              <p className="text-gray-600 line-clamp-4">
+              <p className="text-gray-600 line-clamp-5">
                 <span
                   dangerouslySetInnerHTML={{
                     __html: DOMPurify.sanitize(post?.description),
@@ -51,7 +62,7 @@ const Home = () => {
                   className="single"
                 />
               </p>
-              <Link to={`/post/${post.id}`}>
+              <Link to={`/post/${post.id}`} className="w-max">
                 <button className="btn text-teal-600">Read More</button>
               </Link>
             </div>
